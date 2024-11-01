@@ -1,0 +1,36 @@
+[
+    {
+      "id": 1,
+      "nombre": "Paella",
+      "fecha_creacion": "2023-05-10",
+      "descripcion": "Un plato tradicional de Valencia.",
+      "autor": 101,
+      "tipo_cocina": 1,
+      "pais_origen": 34,
+      "dificultad": "Media",
+      "img_ruta": "https://via.placeholder.com/150"
+    },
+    {
+      "id": 2,
+      "nombre": "Sushi",
+      "fecha_creacion": "2023-06-15",
+      "descripcion": "Un plato típico de Japón.",
+      "autor": 102,
+      "tipo_cocina": 2,
+      "pais_origen": 81,
+      "dificultad": "Alta",
+      "img_ruta": "https://via.placeholder.com/150"
+    },
+    {
+      "id": 3,
+      "nombre": "Tacos",
+      "fecha_creacion": "2023-07-20",
+      "descripcion": "Tacos mexicanos auténticos.",
+      "autor": 103,
+      "tipo_cocina": 3,
+      "pais_origen": 52,
+      "dificultad": "Baja",
+      "img_ruta": "https://via.placeholder.com/150"
+    }
+  ]
+  
