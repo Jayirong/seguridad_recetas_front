@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Receta } from 'src/app/model/receta';
 import { RecipeService } from 'src/app/service/recipes/recipe.service';
+import { UserService } from 'src/app/service/users/user.service';
 
 @Component({
   selector: 'app-recipes',
@@ -11,9 +13,20 @@ export class RecipesComponent implements OnInit {
 
   recetas: Receta[] = [];
 
-  constructor(private dataService: RecipeService) {}
+  constructor(
+    private dataService: RecipeService,
+    private userService:UserService,
+    private router : Router
+  ) {}
 
   ngOnInit(): void {
+
+    if(!this.userService.isAuthenticated()){
+      this.router.navigate(['/home']);
+    } 
+
+
+
     this.dataService.getRecetas().subscribe(
       (data: Receta[]) => {
         this.recetas = data;

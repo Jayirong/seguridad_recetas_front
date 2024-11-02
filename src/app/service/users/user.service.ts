@@ -3,14 +3,26 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { LoginResponse } from 'src/app/model/loginresponse';
+import { User } from 'src/app/model/usuario';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  private usuariosUrl = 'assets/JSON/usuarios.json'; 
+  private usuariosUrl = 'assets/JSON/usuarios.json';
+
   private token: string | null = null; 
+  
+
+  public userlog: User = {
+    id:0,
+    username:"",
+    nombre:"",
+    apellido:"",
+    password:"",
+    rol:0,
+  };
 
   constructor(private http: HttpClient) {}
 
