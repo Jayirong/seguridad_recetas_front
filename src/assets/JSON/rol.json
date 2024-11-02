@@ -1,0 +1,27 @@
+[
+    {
+        "id": 1,
+        "descripcion": "Administrador",
+        "estado": "A"
+    },
+    {
+        "id": 2,
+        "descripcion": "Usuario",
+        "estado": "A"
+    },
+    {
+        "id": 3,
+        "descripcion": "Invitado",
+        "estado": "A"
+    },
+    {
+        "id": 4,
+        "descripcion": "Editor",
+        "estado": "D"
+    },
+    {
+        "id": 5,
+        "descripcion": "Visitante",
+        "estado": "D"
+    }
+]

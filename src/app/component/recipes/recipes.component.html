@@ -1,1 +1,35 @@
-<p>recipes works!</p>
+<div class="container my-5">
+  <h1 class="text-center mb-4">Lista de Recetas</h1>
+  
+  <!-- Tabla de recetas -->
+  <table class="table table-bordered table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Fecha de Creación</th>
+        <th>Descripción</th>
+        <th>Autor</th>
+        <th>Tipo de Cocina</th>
+        <th>País de Origen</th>
+        <th>Dificultad</th>
+        <th>Acción</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let receta of recetas">
+        <td>{{ receta.id }}</td>
+        <td>{{ receta.nombre }}</td>
+        <td>{{ receta.fecha_creacion }}</td>
+        <td>{{ receta.descripcion }}</td>
+        <td>{{ receta.autor }}</td>
+        <td>{{ receta.tipo_cocina }}</td>
+        <td>{{ receta.pais_origen }}</td>
+        <td>{{ receta.dificultad }}</td>
+        <td><button type="button" (click)="verReceta(receta.id)" class="btn btn-success" >Ver</button></td>
+
+      </tr>
+    </tbody>
+  </table>
+</div>
