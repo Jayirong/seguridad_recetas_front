@@ -18,6 +18,9 @@ export class UserService {
     const loginData = { username, password };
     return this.http.post<LoginResponse>(this.usuariosUrl, loginData).pipe(
       map(response => {
+        if(response.error){
+          return false;
+        }
         this.token = response.token;
         return true; 
       }),
