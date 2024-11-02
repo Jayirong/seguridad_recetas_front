@@ -9,12 +9,11 @@ import { LoginResponse } from 'src/app/model/loginresponse';
 })
 export class UserService {
 
-  private usuariosUrl = 'assets/JSON/usuarios.json'; // Ruta al archivo JSON
-  private token: string | null = null; // Variable para almacenar el token
+  private usuariosUrl = 'assets/JSON/usuarios.json'; 
+  private token: string | null = null; 
 
   constructor(private http: HttpClient) {}
 
-  // Método para validar el login del usuario
   login(username: string, password: string): Observable<boolean> {
     const loginData = { username, password };
     return this.http.post<LoginResponse>(this.usuariosUrl, loginData).pipe(

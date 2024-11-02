@@ -9,7 +9,7 @@ import { Receta } from 'src/app/model/receta';
 })
 export class RecipeService {
 
-  private jsonUrl = 'assets/JSON/recetas.json'; // Ruta al archivo JSON
+  private jsonUrl = 'assets/JSON/recetas.json'; 
 
   constructor(private http: HttpClient) {}
 
