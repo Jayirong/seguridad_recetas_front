@@ -75,4 +75,34 @@ export class UserService {
   isAuthenticated(): boolean {
     return this.getToken() !== null; 
   }
+
+  createUser(user: User): Observable<any> {
+    const headers = this.getAuthHeaders();
+    return this.http.post(`${this.url}/api/user/create`, user, { headers })
+      .pipe(
+        catchError(this.handleError<any>('createUser'))
+      );
+  }
+
+  updateUser(user: User): Observable<any> {
+    const headers = this.getAuthHeaders();
+    return this.http.put(`${this.url}/api/user/update/${user.id}`, user, { headers })
+      .pipe(
+        catchError(this.handleError<any>('updateUser'))
+      );
+  }
+
+  private getAuthHeaders(): HttpHeaders {
+    const token = this.getToken();
+    return new HttpHeaders().set('Authorization', 'Bearer ' + token);
+  }
+
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      console.error(`${operation} failed: ${error.message}`);
+      return of(result as T);
+    };
+  }
+
+
 }

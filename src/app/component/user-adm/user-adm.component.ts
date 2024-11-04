@@ -19,8 +19,12 @@ export class UserAdmComponent implements OnInit {
     roles:[] // o-> usuario  /////|||||\\\\\\  1 -> admin
   };
 
+  actualiza:boolean = false;
+
 
   user_det_form :FormGroup;
+  n_user_form : FormGroup;
+
 
 
   constructor( 
@@ -30,7 +34,12 @@ export class UserAdmComponent implements OnInit {
     this.user_det_form = this.fb.group({
       username:['',Validators.required]
     });
-    
+    this.n_user_form = this.fb.group({
+      username:['',Validators.required],
+      password:['',Validators.required],
+      rol:['',Validators.required],
+
+    });
 
   }
 
@@ -54,11 +63,76 @@ export class UserAdmComponent implements OnInit {
       this.user_det_form.patchValue({
         username: user.username,
       });
+      this.actualiza = true;
     })
   }
 
 
-  onSubmit(){
+
+  limpiarFormN(){
+    
+    this.actualiza = false;
+
+    this.n_user_form.reset();
 
   }
+
+  limpiarFormDet(){
+    this.actualiza = false;
+
+    this.user_det_form.reset();
+
+    this.usr_det = {
+      id:0,
+      username:"",
+      password:"",
+      roles:[] // o-> usuario  /////|||||\\\\\\  1 -> admin
+    };
+  }
+
+  actualizaUser() {
+    // Obtén los valores del formulario
+    const formValues = this.user_det_form.value;
+  
+    const userToUpdate: any = {
+      id: this.usr_det.id, 
+      username: formValues.username,
+      // password: this.usr_det.password, 
+      roles: this.usr_det.roles 
+    };
+  
+    this.userService.updateUser(userToUpdate).subscribe(
+      (response) => {
+        console.log('Usuario actualizado:', response);
+        this.getAllUsers(); 
+        this.limpiarFormDet(); 
+      },
+      (error) => {
+        console.error('Error al actualizar el usuario:', error);
+      }
+    );
+  }
+  
+  onSubmit() {
+    const formValues = this.n_user_form.value;
+  
+    const newUser: User = {
+      id: 0, 
+      username: formValues.username,
+      password: formValues.password,
+      roles: [formValues.rol] 
+    };
+  
+    this.userService.createUser(newUser).subscribe(
+      (response) => {
+        console.log('Usuario creado:', response);
+        this.getAllUsers(); 
+        this.limpiarFormN(); 
+      },
+      (error) => {
+        console.error('Error al crear el usuario:', error);
+      }
+    );
+  }
+  
 }

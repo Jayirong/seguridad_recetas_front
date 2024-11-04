@@ -20,23 +20,68 @@
     </div>
 </div>
 <hr>
-<div class="container my-5">
-    <h1 class="text-center mb-4">Usuario Detalle</h1>
+<div class="container my-5" *ngIf="!actualiza">
+    <h1 class="text-center mb-4">Nuevo Usuario</h1>
     <div class="row">
         <div class="container mt-5">
             <h2>User Form</h2>
-            <form [formGroup]="user_det_form" (ngSubmit)="onSubmit()">
+            <form [formGroup]="n_user_form" (ngSubmit)="onSubmit()">
               <div class="form-group">
-                <label for="username">Name:</label>
+                <label for="username">Nombre:</label>
                 <input id="username" formControlName="username" class="form-control" />
-                <div *ngIf="user_det_form.get('username')?.invalid && user_det_form.get('username')?.touched" class="text-danger">
+                <div *ngIf="n_user_form.get('username')?.invalid && n_user_form.get('username')?.touched" class="text-danger">
+                  Name is required.
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="password">Password:</label>
+                <input id="password" formControlName="password" class="form-control" />
+                <div *ngIf="n_user_form.get('password')?.invalid && n_user_form.get('password')?.touched" class="text-danger">
+                  Name is required.
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="rol">Rol:</label>
+                <select class="form-control" formControlName="rol" >
+                  <option class="form-control" value="1" >Admin</option>
+                  <option class="form-control" value="0" >User</option>
+
+                </select>
+                <div *ngIf="n_user_form.get('rol')?.invalid && n_user_form.get('rol')?.touched" class="text-danger">
                   Name is required.
                 </div>
               </div>
           
-              <button type="submit" class="btn btn-primary" [disabled]="user_det_form.invalid">Submit</button>
+              <button type="submit"  class="btn btn-outline-success" [disabled]="n_user_form.invalid">Agregar</button>
+
+              <button type="button" (click)="limpiarFormN()" class="btn btn-outline-warning" [disabled]="n_user_form.invalid">Limpiar Formulario</button>
+
             </form>
           </div>
           
     </div>
+</div>
+<div class="container my-5" *ngIf="actualiza">
+  <h1 class="text-center mb-4">Usuario Det</h1>
+  <div class="row">
+      <div class="container mt-5">
+          <h2>User Form</h2>
+          <form [formGroup]="user_det_form" >
+            <div class="form-group">
+              <label for="username">Nombre:</label>
+              <input id="username" formControlName="username" class="form-control" />
+              <div *ngIf="user_det_form.get('username')?.invalid && user_det_form.get('username')?.touched" class="text-danger">
+                Nombre is required.
+              </div>
+            </div>
+           
+        
+            <button type="button" (click)="actualizaUser()" class="btn btn-info" [disabled]="user_det_form.invalid">Actualizar</button>
+            <button type="button" (click)="limpiarFormN()" class="btn btn-outline-warning" [disabled]="user_det_form.invalid">Limpiar Formulario</button>
+
+          </form>
+        </div>
+        
+  </div>
 </div>
