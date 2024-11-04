@@ -16,13 +16,19 @@ export class LoginComponent {
   constructor(private usuarioService: UserService, private router: Router) {}
 
   onSubmit(): void {
-    if (this.usuarioService.login(this.username, this.password)) {
-      // Redirigir al usuario si la autenticación es exitosa
-      this.router.navigate(['/home']); // Cambia '/home' por la ruta que desees
-    } else {
-      // Mostrar mensaje de error si la autenticación falla
-      this.errorMessage = 'Usuario o contraseña incorrectos';
-    }
+
+    let token = this.usuarioService.login(this.username, this.password)
+
+
+    console.log(token)
+
+    // if (this.usuarioService.login(this.username, this.password)) {
+    //   // Redirigir al usuario si la autenticación es exitosa
+    //   this.router.navigate(['/home']); // Cambia '/home' por la ruta que desees
+    // } else {
+    //   // Mostrar mensaje de error si la autenticación falla
+    //   this.errorMessage = 'Usuario o contraseña incorrectos';
+    // }
   }
 
 }

@@ -26,21 +26,33 @@ export class UserService {
 
   constructor(private http: HttpClient) {}
 
-  login(username: string, password: string): Observable<boolean> {
-    const loginData = { username, password };
-    return this.http.post<LoginResponse>(this.usuariosUrl, loginData).pipe(
-      map(response => {
-        if(response.error){
-          return false;
-        }
-        this.token = response.token;
-        return true; 
-      }),
-      catchError(error => {
-        console.error('Error en el login:', error);
-        return of(false);
-      })
-    );
+  login(username: string, password: string) {
+
+    this.http.post('http://localhost:8080/api/auth/login', { username, password }).subscribe((response: any) => {
+      localStorage.setItem('token', response.token);
+
+      this.token = response.token
+
+      return response.token;
+    });
+  
+
+
+
+    // const loginData = { username, password };
+    // return this.http.post<LoginResponse>(this.usuariosUrl, loginData).pipe(
+    //   map(response => {
+    //     if(response.error){
+    //       return false;
+    //     }
+    //     this.token = response.token;
+    //     return true; 
+    //   }),
+    //   catchError(error => {
+    //     console.error('Error en el login:', error);
+    //     return of(false);
+    //   })
+    // );
   }
 
   getToken(): string | null {
