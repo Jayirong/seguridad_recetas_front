@@ -1,1 +1,42 @@
-<p *ngFor="let usr of users">user-adm works!</p>
+<app-nav></app-nav>
+
+<div class="container my-5">
+    <h1 class="text-center mb-4">Usuarios del sistema</h1>
+    <div class="row">
+        <div class="col-sm-6 col-md-4 col-lg-3 mb-4" *ngFor="let user of users">
+            <div class="card h-100">
+                <div class="card-body">
+                    <p>{{user.id}}</p>
+                    <h5 class="card-title">Nombre de Usuario : <br>{{user.username}}</h5>
+                    <p class="card-text">Pass : <br>{{user.password}}</p>
+                    <!-- <p class="card-text font-weight-bold">Autor: {{user.autor}}</p>
+                    <hr>
+                    <p class="card-text font-weight-bold">Dificultad: {{user.dificultad}}</p> -->
+
+                    <button type="button" (click)="detalleUser(user.id)" class="btn btn-outline-success">Ver Detalle</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<hr>
+<div class="container my-5">
+    <h1 class="text-center mb-4">Usuario Detalle</h1>
+    <div class="row">
+        <div class="container mt-5">
+            <h2>User Form</h2>
+            <form [formGroup]="user_det_form" (ngSubmit)="onSubmit()">
+              <div class="form-group">
+                <label for="username">Name:</label>
+                <input id="username" formControlName="username" class="form-control" />
+                <div *ngIf="user_det_form.get('username')?.invalid && user_det_form.get('username')?.touched" class="text-danger">
+                  Name is required.
+                </div>
+              </div>
+          
+              <button type="submit" class="btn btn-primary" [disabled]="user_det_form.invalid">Submit</button>
+            </form>
+          </div>
+          
+    </div>
+</div>

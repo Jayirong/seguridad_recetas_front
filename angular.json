@@ -102,5 +102,8 @@
       }
     }
   },
-  "defaultProject": "recetas-front"
+  "defaultProject": "recetas-front",
+  "cli": {
+    "analytics": "c75dcbff-f8b0-4ea6-9b2e-92dd33692078"
+  }
 }

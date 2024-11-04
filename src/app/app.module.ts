@@ -9,7 +9,7 @@ import { HomeComponent } from './component/home/home.component';
 import { RecipesComponent } from './component/recipes/recipes.component';
 import { PageNotFoundComponent } from './component/page-not-found/page-not-found.component';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserAdmComponent } from './component/user-adm/user-adm.component'; // Importa FormsModule
 
 @NgModule({
@@ -26,7 +26,8 @@ import { UserAdmComponent } from './component/user-adm/user-adm.component'; // I
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

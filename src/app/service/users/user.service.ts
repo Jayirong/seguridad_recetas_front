@@ -20,10 +20,8 @@ export class UserService {
   public userlog: User = {
     id:0,
     username:"",
-    nombre:"",
-    apellido:"",
     password:"",
-    rol:0,
+    roles:[''],
   };
 
   constructor(private http: HttpClient,
@@ -44,23 +42,34 @@ export class UserService {
   
   }
 
-  getUsers(){
+  getUsers(pk:number | undefined){
 
     if(!this.isAuthenticated()){
       this.router.navigate(['/home']);
       return null;
     }
 
-
-    console.log(this.getToken(),' token service')
+    // console.log(this.getToken(),' token service')
     const headers = new HttpHeaders().set('Authorization', 'Bearer '+this.getToken());
 
+    if(pk!=undefined){
+      return this.http.get(this.url+'/api/admin/user/id/'+pk,{headers});  
+    }
 
     return this.http.get(this.url+'/api/admin/users',{headers})
   }
 
   getToken(): string | null {
     return this.token || localStorage.getItem('token'); 
+  }
+
+  delToken(){
+    this.token = null;
+  }
+
+  logout(){
+    localStorage.removeItem('token');
+    this.delToken();
   }
 
   isAuthenticated(): boolean {
