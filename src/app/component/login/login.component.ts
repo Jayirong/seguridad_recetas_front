@@ -20,7 +20,7 @@ export class LoginComponent {
     let token = this.usuarioService.login(this.username, this.password)
 
 
-    console.log(token)
+    console.log(this.usuarioService.getToken())
 
     // if (this.usuarioService.login(this.username, this.password)) {
     //   // Redirigir al usuario si la autenticación es exitosa

@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { LoginResponse } from 'src/app/model/loginresponse';
 import { User } from 'src/app/model/usuario';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,7 @@ export class UserService {
 
   private token: string | null = null; 
   
+  private url : string = 'http://localhost:8080';
 
   public userlog: User = {
     id:0,
@@ -24,35 +26,37 @@ export class UserService {
     rol:0,
   };
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,
+    private router : Router
+  ) {}
 
   login(username: string, password: string) {
 
-    this.http.post('http://localhost:8080/api/auth/login', { username, password }).subscribe((response: any) => {
+    this.http.post(this.url+'/api/auth/login', { username, password }).subscribe((response: any) => {
       localStorage.setItem('token', response.token);
 
       this.token = response.token
 
+      this.router.navigate(['/home'])
+
       return response.token;
     });
   
+  }
+
+  getUsers(){
+
+    if(!this.isAuthenticated()){
+      this.router.navigate(['/home']);
+      return null;
+    }
 
 
+    console.log(this.getToken(),' token service')
+    const headers = new HttpHeaders().set('Authorization', 'Bearer '+this.getToken());
 
-    // const loginData = { username, password };
-    // return this.http.post<LoginResponse>(this.usuariosUrl, loginData).pipe(
-    //   map(response => {
-    //     if(response.error){
-    //       return false;
-    //     }
-    //     this.token = response.token;
-    //     return true; 
-    //   }),
-    //   catchError(error => {
-    //     console.error('Error en el login:', error);
-    //     return of(false);
-    //   })
-    // );
+
+    return this.http.get(this.url+'/api/admin/users',{headers})
   }
 
   getToken(): string | null {

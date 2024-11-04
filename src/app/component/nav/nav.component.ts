@@ -13,13 +13,12 @@ export class NavComponent implements OnInit {
   public no_auth = true;
 
   ngOnInit(): void {
+    this.isAdmin()
   }
 
   isAdmin(){
-    if(!this.userService.isAuthenticated() || this.userService.userlog.rol != 1){
-      this.no_auth = true
-    }
-    if(this.userService.isAuthenticated() && this.userService.userlog.rol ==1){
+    
+    if(this.userService.isAuthenticated()){
       this.no_auth= false;
     }
   }
