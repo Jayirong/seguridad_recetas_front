@@ -76,17 +76,17 @@ export class UserService {
     return this.getToken() !== null; 
   }
 
-  createUser(user: User): Observable<any> {
-    const headers = this.getAuthHeaders();
-    return this.http.post(`${this.url}/api/user/create`, user, { headers })
+  createUser(user:any): Observable<any> {
+
+    return this.http.post(`${this.url}/api/user/register`, user)
       .pipe(
         catchError(this.handleError<any>('createUser'))
       );
   }
 
-  updateUser(user: User): Observable<any> {
-    const headers = this.getAuthHeaders();
-    return this.http.put(`${this.url}/api/user/update/${user.id}`, user, { headers })
+  updateUser(user:any,username:string): Observable<any> {
+    const head = this.getAuthHeaders();
+    return this.http.put(`${this.url}/api/admin/user/update/${username}`, user, {headers:head} )
       .pipe(
         catchError(this.handleError<any>('updateUser'))
       );

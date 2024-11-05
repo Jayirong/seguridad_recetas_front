@@ -56,10 +56,10 @@ export class UserAdmComponent implements OnInit {
   }
 
   detalleUser(pk:number){
-    console.log(pk)
-
+    this.usr_det.id = pk;
     this.userService.getUsers(pk)?.subscribe((user:any)=>{
-      console.log(user)
+      this.usr_det.username = user.username
+
       this.user_det_form.patchValue({
         username: user.username,
       });
@@ -95,13 +95,13 @@ export class UserAdmComponent implements OnInit {
     const formValues = this.user_det_form.value;
   
     const userToUpdate: any = {
-      id: this.usr_det.id, 
+      //id: this.usr_det.id, 
       username: formValues.username,
       // password: this.usr_det.password, 
-      roles: this.usr_det.roles 
+      //roles: this.usr_det.roles 
     };
   
-    this.userService.updateUser(userToUpdate).subscribe(
+    this.userService.updateUser(userToUpdate,this.usr_det.username).subscribe(
       (response) => {
         console.log('Usuario actualizado:', response);
         this.getAllUsers(); 
@@ -116,8 +116,8 @@ export class UserAdmComponent implements OnInit {
   onSubmit() {
     const formValues = this.n_user_form.value;
   
-    const newUser: User = {
-      id: 0, 
+    const newUser = {
+      //id: 0, 
       username: formValues.username,
       password: formValues.password,
       roles: [formValues.rol] 
