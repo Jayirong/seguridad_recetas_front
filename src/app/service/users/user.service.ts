@@ -5,6 +5,7 @@ import { catchError, map } from 'rxjs/operators';
 import { LoginResponse } from 'src/app/model/loginresponse';
 import { User } from 'src/app/model/usuario';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class UserService {
 
   private token: string | null = null; 
   
-  private url : string = 'http://localhost:8080';
+  // private url : string = '';
 
   public userlog: User = {
     id:0,
@@ -30,7 +31,7 @@ export class UserService {
 
   login(username: string, password: string) {
 
-    this.http.post(this.url+'/api/auth/login', { username, password }).subscribe((response: any) => {
+    this.http.post(environment.url_api+'/api/auth/login', { username, password }).subscribe((response: any) => {
       localStorage.setItem('token', response.token);
 
       this.token = response.token
@@ -53,10 +54,10 @@ export class UserService {
     const headers = new HttpHeaders().set('Authorization', 'Bearer '+this.getToken());
 
     if(pk!=undefined){
-      return this.http.get(this.url+'/api/admin/user/id/'+pk,{headers});  
+      return this.http.get(environment.url_api+'/api/admin/user/id/'+pk,{headers});  
     }
 
-    return this.http.get(this.url+'/api/admin/users',{headers})
+    return this.http.get(environment.url_api+'/api/admin/users',{headers})
   }
 
   getToken(): string | null {
@@ -78,7 +79,7 @@ export class UserService {
 
   createUser(user:any): Observable<any> {
 
-    return this.http.post(`${this.url}/api/user/register`, user)
+    return this.http.post(`${environment.url_api}/api/user/register`, user)
       .pipe(
         catchError(this.handleError<any>('createUser'))
       );
@@ -86,7 +87,7 @@ export class UserService {
 
   updateUser(user:any,username:string): Observable<any> {
     const head = this.getAuthHeaders();
-    return this.http.put(`${this.url}/api/admin/user/update/${username}`, user, {headers:head} )
+    return this.http.put(`${environment.url_api}/api/admin/user/update/${username}`, user, {headers:head} )
       .pipe(
         catchError(this.handleError<any>('updateUser'))
       );

@@ -16,6 +16,9 @@
         <a class="nav-link" *ngIf="!no_auth" routerLinkActive="active" routerLink="/adm-users">ADM Usuarios <span class="sr-only"></span></a>
       </li>
       <li class="nav-item active">
+        <a class="nav-link" *ngIf="!no_auth" routerLinkActive="active" routerLink="/adm-recipes">ADM Recetas <span class="sr-only"></span></a>
+      </li>
+      <li class="nav-item active">
         <a class="nav-link" *ngIf="!no_auth" routerLinkActive="active" routerLink="/home" (click)="logout()" >Logout <span class="sr-only"></span></a>
       </li>
       <li class="nav-item">

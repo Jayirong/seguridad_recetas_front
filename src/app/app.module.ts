@@ -11,6 +11,7 @@ import { PageNotFoundComponent } from './component/page-not-found/page-not-found
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserAdmComponent } from './component/user-adm/user-adm.component'; // Importa FormsModule
+import { RecipeAdmComponent } from './component/recipe-adm/recipe-adm.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { UserAdmComponent } from './component/user-adm/user-adm.component'; // I
     HomeComponent,
     RecipesComponent,
     PageNotFoundComponent,
-    UserAdmComponent
+    UserAdmComponent,
+    RecipeAdmComponent
   ],
   imports: [
     BrowserModule,

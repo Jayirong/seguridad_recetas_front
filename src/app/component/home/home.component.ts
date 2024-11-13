@@ -14,14 +14,13 @@ export class HomeComponent implements OnInit {
   constructor(private dataService: RecipeService) {}
 
   ngOnInit(): void {
-    this.dataService.getRecetas().subscribe(
-      (data: Receta[]) => {
-        this.recetas = data;
-      },
-      (error) => {
-        console.error('Error al cargar los datos:', error);
-      }
-    );
+      this.getRecetas();
+  }
+
+  getRecetas(){
+    this.dataService.getRecetas(undefined)?.subscribe((recipes:any)=>{
+      this.recetas= recipes;
+    });
   }
 
 }

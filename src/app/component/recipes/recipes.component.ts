@@ -14,7 +14,7 @@ export class RecipesComponent implements OnInit {
   recetas: Receta[] = [];
 
   constructor(
-    private dataService: RecipeService,
+    private recipeService: RecipeService,
     private userService:UserService,
     private router : Router
   ) {}
@@ -25,16 +25,20 @@ export class RecipesComponent implements OnInit {
       this.router.navigate(['/home']);
     } 
 
+    this.recipeService.getRecetas(undefined)?.subscribe((recipes:any)=>{
+      this.recetas= recipes;
+    })
 
 
-    this.dataService.getRecetas().subscribe(
-      (data: Receta[]) => {
-        this.recetas = data;
-      },
-      (error) => {
-        console.error('Error al cargar los datos:', error);
-      }
-    );
+
+    // this.dataService.getRecetas().subscribe(
+    //   (data: Receta[]) => {
+    //     this.recetas = data;
+    //   },
+    //   (error) => {
+    //     console.error('Error al cargar los datos:', error);
+    //   }
+    // );
   }
 
   verReceta(id:number){
