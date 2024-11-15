@@ -13,9 +13,32 @@
                     <hr>
                     <p class="card-text font-weight-bold">Dificultad: {{receta.dificultad}}</p>
 
-                    <button type="button" class="btn btn-outline-success">Ver Detalle</button>
+                    <button type="button" id="btn_detalle" class="btn btn-outline-success" (click)="verDetalle(receta.id_recipe)"  >Ver Detalle</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<!-- Modal de Detalle de la Receta -->
+<div class="modal fade" id="detalleModal" tabindex="-1" aria-labelledby="detalleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="detalleModalLabel">{{ recetaSeleccionada?.nombre }}</h5>
+          <button type="button" class="btn-close" (click)="cerrarModal()" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p><strong>Fecha de creación:</strong> {{ recetaSeleccionada?.fecha_creacion }}</p>
+          <p><strong>Descripción:</strong> {{ recetaSeleccionada?.descripcion }}</p>
+          <p><strong>Tipo de cocina:</strong> {{ recetaSeleccionada?.tipo_cocina }}</p>
+          <p><strong>País de origen:</strong> {{ recetaSeleccionada?.pais_origen }}</p>
+          <p><strong>Dificultad:</strong> {{ recetaSeleccionada?.dificultad }}</p>
+          <img [src]="recetaSeleccionada?.img_ruta" class="img-fluid" alt="Imagen de la receta">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="cerrarModal()" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>

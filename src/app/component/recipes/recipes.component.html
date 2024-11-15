@@ -21,7 +21,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let receta of recetas">
-        <td>{{ receta.id }}</td>
+        <td>{{ receta.id_recipe }}</td>
         <td>{{ receta.nombre }}</td>
         <td>{{ receta.fecha_creacion }}</td>
         <td>{{ receta.descripcion }}</td>
@@ -29,7 +29,7 @@
         <td>{{ receta.tipo_cocina }}</td>
         <td>{{ receta.pais_origen }}</td>
         <td>{{ receta.dificultad }}</td>
-        <td><button type="button" (click)="verReceta(receta.id)" class="btn btn-success" >Ver</button></td>
+        <td><button type="button" (click)="verReceta(receta.id_recipe)" class="btn btn-success" >Ver</button></td>
 
       </tr>
     </tbody>

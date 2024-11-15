@@ -16,6 +16,8 @@ export class RecipeAdmComponent implements OnInit {
   n_receta_form: FormGroup;
   receta_det_form: FormGroup;
 
+  pk_receta:number|undefined;
+
   constructor(
     private recipeService: RecipeService,
     private userService: UserService,
@@ -30,7 +32,7 @@ export class RecipeAdmComponent implements OnInit {
     this.n_receta_form = this.fb.group({
       nombre: ['', Validators.required],
       descripcion: ['', Validators.required],
-      autor: ['', Validators.required],
+      idUser: ['', Validators.required],
       tipo_cocina: ['', Validators.required],
       pais_origen: ['', Validators.required],
       dificultad: ['', Validators.required],
@@ -40,7 +42,7 @@ export class RecipeAdmComponent implements OnInit {
     this.receta_det_form = this.fb.group({
       nombre: ['', Validators.required],
       descripcion: ['', Validators.required],
-      autor: ['', Validators.required],
+      idUser: ['', Validators.required],
       tipo_cocina: ['', Validators.required],
       pais_origen: ['', Validators.required],
       dificultad: ['', Validators.required],
@@ -66,6 +68,12 @@ export class RecipeAdmComponent implements OnInit {
 
   detalleReceta(id: number) {
     this.actualiza = true;
+
+    this.pk_receta= id;
+
+    // console.log(id)
+    // return
+
     this.recipeService.getRecetas(id).subscribe((receta) => {
       console.log(receta);
       this.receta_det_form.patchValue(receta);
@@ -73,12 +81,18 @@ export class RecipeAdmComponent implements OnInit {
   }
 
   actualizaReceta() {
+
+
+
     if (this.receta_det_form.valid) {
       const recetaActualizada: Receta = this.receta_det_form.value;
-      // this.recipeService.updateReceta(recetaActualizada).subscribe(() => {
-      //   this.actualiza = false;
-      //   this.ngOnInit();
-      // });
+      if(this.pk_receta){
+        this.recipeService.updateReceta(recetaActualizada, this.pk_receta)?.subscribe(() => {
+          this.actualiza = false;
+          this.ngOnInit();
+        });
+      }
+      
     }
   }
 

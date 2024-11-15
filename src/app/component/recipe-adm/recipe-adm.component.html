@@ -44,15 +44,15 @@
         </thead>
         <tbody>
           <tr *ngFor="let receta of recetas">
-            <td>{{ receta.id }}</td>
+            <td>{{ receta.id_recipe }}</td>
             <td>{{ receta.nombre }}</td>
             <td>{{ receta.fecha_creacion }}</td>
             <td>{{ receta.descripcion }}</td>
-            <td>{{ receta.autor }}</td>
+            <td>{{ receta.idUser }}</td>
             <td>{{ receta.tipo_cocina }}</td>
             <td>{{ receta.pais_origen }}</td>
             <td>{{ receta.dificultad }}</td>
-            <td><button type="button" (click)="detalleReceta(receta.id)" class="btn btn-success" >Ver</button></td>
+            <td><button type="button" (click)="detalleReceta(receta.id_recipe)" class="btn btn-success" >Ver</button></td>
     
           </tr>
         </tbody>
@@ -110,8 +110,8 @@
             <textarea id="descripcion" formControlName="descripcion" class="form-control"></textarea>
         </div>
         <div class="form-group">
-            <label for="autor">Autor:</label>
-            <input id="autor" formControlName="autor" class="form-control" />
+            <label for="idUser">Autor:</label>
+            <input id="idUser" formControlName="idUser" class="form-control" />
         </div>
         <div class="form-group">
             <label for="tipo_cocina">Tipo de Cocina:</label>
@@ -123,7 +123,7 @@
         </div>
         <div class="form-group">
             <label for="dificultad">Dificultad:</label>
-            <input id="dificultad" formControlName="dificultad" class="form-control" />
+            <input type="text" id="dificultad" formControlName="dificultad" class="form-control" />
         </div>
         <div class="form-group">
             <label for="img_ruta">URL de la Imagen:</label>
@@ -145,7 +145,32 @@
             <label for="descripcion">Descripción:</label>
             <textarea id="descripcion" formControlName="descripcion" class="form-control"></textarea>
         </div>
-        <button type="button" (click)="actualizaReceta()" class="btn btn-info" [disabled]="receta_det_form.invalid">Actualizar</button>
+        <div class="form-group">
+            <label for="idUser">Autor:</label>
+            <input id="idUser" formControlName="idUser" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="tipo_cocina">Tipo de Cocina:</label>
+            <input id="tipo_cocina" formControlName="tipo_cocina" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="pais_origen">País de Origen:</label>
+            <input id="pais_origen" formControlName="pais_origen" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="dificultad">Dificultad:</label>
+            <input id="dificultad" formControlName="dificultad" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="img_ruta">URL de la Imagen:</label>
+            <input id="img_ruta" formControlName="img_ruta" class="form-control" />
+        </div>
+        <button type="button" (click)="actualizaReceta()" class="btn btn-info" >Actualizar</button>
         <button type="button" (click)="limpiarFormN()" class="btn btn-outline-warning" [disabled]="receta_det_form.invalid">Limpiar Formulario</button>
     </form>
 </div>
+
+<!-- 
+    CON LOS FORMULARIOS REACTIVOS NOS EVITAMOS DE TENER DOS FORMULARIOS HTML COMO ESTA AQUI ...
+    PODEMOS FACILMENTE UTILIZAR UN SOLO FORMULARIO PERO PARA MAS ADELANTE SE REFACTORIZA ESO XXXXDDDDDDDD
+-->
