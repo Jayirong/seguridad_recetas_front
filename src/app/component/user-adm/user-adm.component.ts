@@ -13,10 +13,13 @@ export class UserAdmComponent implements OnInit {
   users : User[] =[];
 
   usr_det : User = {
-    id:0,
+    id_user:0,
     username:"",
+    nombre:"",
+    apellido:"",
     password:"",
-    roles:[] // o-> usuario  /////|||||\\\\\\  1 -> admin
+    roles:[], // o-> usuario  /////|||||\\\\\\  1 -> admin
+    estado:false,
   };
 
   actualiza:boolean = false;
@@ -32,10 +35,16 @@ export class UserAdmComponent implements OnInit {
     private fb : FormBuilder
   ) { 
     this.user_det_form = this.fb.group({
-      username:['',Validators.required]
+      username:['',Validators.required],
+      nombre:['',Validators.required],
+      apellido:['',Validators.required],
+      rol:['',Validators.required]
+
     });
     this.n_user_form = this.fb.group({
       username:['',Validators.required],
+      nombre:['',Validators.required],
+      apellido:['',Validators.required],
       password:['',Validators.required],
       rol:['',Validators.required],
 
@@ -56,14 +65,21 @@ export class UserAdmComponent implements OnInit {
   }
 
   detalleUser(pk:number){
-    this.usr_det.id = pk;
+    this.usr_det.id_user = pk;
+
     this.userService.getUsers(pk)?.subscribe((user:any)=>{
-      this.usr_det.username = user.username
+      this.actualiza = true;
+
+      console.log(user)
+
+      // this.usr_det.nombre = user.nombre
 
       this.user_det_form.patchValue({
-        username: user.username,
+        username:user.username,
+        nombre: user.nombre,
+        apellido:user.apellido,
+        // rol:user.rol
       });
-      this.actualiza = true;
     })
   }
 
@@ -83,10 +99,13 @@ export class UserAdmComponent implements OnInit {
     this.user_det_form.reset();
 
     this.usr_det = {
-      id:0,
+      id_user:0,
       username:"",
+      nombre:"",
+      apellido:"",
       password:"",
-      roles:[] // o-> usuario  /////|||||\\\\\\  1 -> admin
+      roles:[], // o-> usuario  /////|||||\\\\\\  1 -> admin
+      estado:false,
     };
   }
 
@@ -97,7 +116,15 @@ export class UserAdmComponent implements OnInit {
     const userToUpdate: any = {
       //id: this.usr_det.id, 
       username: formValues.username,
-      // password: this.usr_det.password, 
+      nombre: formValues.nombre,
+      apellido: formValues.apellido,
+      estado: 1,
+      rol: [1],
+      recipes: [],
+      comments: [],
+
+
+      //password: this.usr_det.password, 
       //roles: this.usr_det.roles 
     };
   
@@ -119,6 +146,8 @@ export class UserAdmComponent implements OnInit {
     const newUser = {
       //id: 0, 
       username: formValues.username,
+      nombre:formValues.nombre,
+      apellido:formValues.apellido,
       password: formValues.password,
       roles: [formValues.rol] 
     };

@@ -19,10 +19,13 @@ export class UserService {
   // private url : string = '';
 
   public userlog: User = {
-    id:0,
+    id_user:0,
     username:"",
+    nombre:"",
+    apellido:"",
     password:"",
     roles:[''],
+    estado:false,
   };
 
   constructor(private http: HttpClient,
@@ -72,7 +75,7 @@ export class UserService {
     localStorage.removeItem('token');
     this.delToken();
   }
-
+  
   isAuthenticated(): boolean {
     return this.getToken() !== null; 
   }

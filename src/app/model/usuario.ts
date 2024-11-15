@@ -1,9 +1,12 @@
 
 export interface User {
-    id:number;
+    id_user:number;
     username:string;
+    nombre:string;
+    apellido:string;
     password:string;
     roles:string[];
+    estado:boolean;
 }
 
 

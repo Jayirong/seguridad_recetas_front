@@ -6,6 +6,7 @@ import { PageNotFoundComponent } from './component/page-not-found/page-not-found
 import { RecipesComponent } from './component/recipes/recipes.component';
 import { UserAdmComponent } from './component/user-adm/user-adm.component';
 import { RecipeAdmComponent } from './component/recipe-adm/recipe-adm.component';
+import { RegisterComponent } from './component/register/register.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -14,8 +15,9 @@ const routes: Routes = [
   { path: 'recipes', component: RecipesComponent },
   { path: 'adm-users', component: UserAdmComponent },
   { path: 'adm-recipes', component: RecipeAdmComponent },
+  { path: 'register', component: RegisterComponent },
 
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  // { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];
 

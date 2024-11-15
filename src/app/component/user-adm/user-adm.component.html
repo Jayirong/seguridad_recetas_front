@@ -6,14 +6,16 @@
         <div class="col-sm-6 col-md-4 col-lg-3 mb-4" *ngFor="let user of users">
             <div class="card h-100">
                 <div class="card-body">
-                    <p>{{user.id}}</p>
-                    <h5 class="card-title">Nombre de Usuario : {{user.username}}</h5>
+                    <p>{{user.id_user}}</p>
+                    <h5 class="card-title">Nombre de Usuario : {{user.nombre}} {{user.apellido}}</h5>
+                    <h5 class="card-title">{{user.username}}</h5>
+
                     <p class="card-text">Rol : {{user.roles[0]}}</p>
                     <!-- <p class="card-text font-weight-bold">Autor: {{user.autor}}</p>
                     <hr>
                     <p class="card-text font-weight-bold">Dificultad: {{user.dificultad}}</p> -->
 
-                    <button type="button" (click)="detalleUser(user.id)" class="btn btn-outline-success">Ver Detalle</button>
+                    <button type="button" (click)="detalleUser(user.id_user)" class="btn btn-outline-success">Ver Detalle</button>
                 </div>
             </div>
         </div>
@@ -27,9 +29,23 @@
             <h2>User Form</h2>
             <form [formGroup]="n_user_form" (ngSubmit)="onSubmit()">
               <div class="form-group">
-                <label for="username">Nombre:</label>
+                <label for="username">Nombre de usuario:</label>
                 <input id="username" formControlName="username" class="form-control" />
                 <div *ngIf="n_user_form.get('username')?.invalid && n_user_form.get('username')?.touched" class="text-danger">
+                  Name is required.
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="nombre">Nombre:</label>
+                <input id="nombre" formControlName="nombre" class="form-control" />
+                <div *ngIf="n_user_form.get('nombre')?.invalid && n_user_form.get('nombre')?.touched" class="text-danger">
+                  Name is required.
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="apellido">Apellido:</label>
+                <input id="apellido" formControlName="apellido" class="form-control" />
+                <div *ngIf="n_user_form.get('apellido')?.invalid && n_user_form.get('apellido')?.touched" class="text-danger">
                   Name is required.
                 </div>
               </div>
@@ -69,16 +85,41 @@
           <h2>User Form</h2>
           <form [formGroup]="user_det_form" >
             <div class="form-group">
-              <label for="username">Nombre:</label>
+              <label for="username">username:</label>
               <input id="username" formControlName="username" class="form-control" />
               <div *ngIf="user_det_form.get('username')?.invalid && user_det_form.get('username')?.touched" class="text-danger">
                 Nombre is required.
               </div>
             </div>
+            <div class="form-group">
+              <label for="nombre">Nombre:</label>
+              <input id="nombre" formControlName="nombre" class="form-control" />
+              <div *ngIf="user_det_form.get('nombre')?.invalid && user_det_form.get('nombre')?.touched" class="text-danger">
+                Nombre is required.
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="apellido">Apellido:</label>
+              <input id="apellido" formControlName="apellido" class="form-control" />
+              <div *ngIf="user_det_form.get('apellido')?.invalid && user_det_form.get('apellido')?.touched" class="text-danger">
+                Nombre is required.
+              </div>
+            </div>
+            <!-- <div class="form-group">
+              <label for="rol">Rol:</label>
+              <select class="form-control" formControlName="rol" >
+                <option class="form-control" value="1" >Admin</option>
+                <option class="form-control" value="0" >User</option>
+
+              </select>
+              <div *ngIf="n_user_form.get('rol')?.invalid && n_user_form.get('rol')?.touched" class="text-danger">
+                Name is required.
+              </div>
+            </div> -->
            
         
-            <button type="button" (click)="actualizaUser()" class="btn btn-info" [disabled]="user_det_form.invalid">Actualizar</button>
-            <button type="button" (click)="limpiarFormN()" class="btn btn-outline-warning" [disabled]="user_det_form.invalid">Limpiar Formulario</button>
+            <button type="button" (click)="actualizaUser()" class="btn btn-info" >Actualizar</button>
+            <button type="button" (click)="limpiarFormN()" class="btn btn-outline-warning" >Limpiar Formulario</button>
 
           </form>
         </div>

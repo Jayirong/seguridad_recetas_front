@@ -1,3 +1,151 @@
+<!-- <app-nav></app-nav>
+
+<p *ngFor="let receta of recetas">recipe-adm works!</p> -->
+
 <app-nav></app-nav>
 
-<p *ngFor="let receta of recetas">recipe-adm works!</p>
+<!-- <div class="container my-5">
+    <h1 class="text-center mb-4">Recetas del sistema</h1>
+    <div class="row">
+        <div class="col-sm-6 col-md-4 col-lg-3 mb-4" *ngFor="let receta of recetas">
+            <div class="card h-100">
+                <img [src]="receta.img_ruta" class="card-img-top" alt="{{ receta.nombre }}">
+                <div class="card-body">
+                    <p>ID: {{ receta.id }}</p>
+                    <h5 class="card-title">Nombre de la receta: {{ receta.nombre }}</h5>
+                    <p class="card-text">Descripción: {{ receta.descripcion }}</p>
+                    <p class="card-text">Autor: {{ receta.autor }}</p>
+                    <p class="card-text">Tipo de cocina: {{ receta.tipo_cocina }}</p>
+                    <p class="card-text">País de origen: {{ receta.pais_origen }}</p>
+                    <p class="card-text">Dificultad: {{ receta.dificultad }}</p>
+                    <button type="button" (click)="detalleReceta(receta.id)" class="btn btn-outline-success">Ver Detalle</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<div class="container my-5">
+    <h1 class="text-center mb-4">Recetas del Sistema</h1>
+    <table class="table table-bordered table-hover table-responsive">
+        <thead class="thead-dark">
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Fecha de Creación</th>
+            <th>Descripción</th>
+            <th>Autor</th>
+            <th>Tipo de Cocina</th>
+            <th>País de Origen</th>
+            <th>Dificultad</th>
+            <th>Acción</th>
+    
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let receta of recetas">
+            <td>{{ receta.id }}</td>
+            <td>{{ receta.nombre }}</td>
+            <td>{{ receta.fecha_creacion }}</td>
+            <td>{{ receta.descripcion }}</td>
+            <td>{{ receta.autor }}</td>
+            <td>{{ receta.tipo_cocina }}</td>
+            <td>{{ receta.pais_origen }}</td>
+            <td>{{ receta.dificultad }}</td>
+            <td><button type="button" (click)="detalleReceta(receta.id)" class="btn btn-success" >Ver</button></td>
+    
+          </tr>
+        </tbody>
+      </table>
+
+    <!-- <table mat-table [dataSource]="recetas" class="mat-elevation-z8">
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef> ID </th>
+            <td mat-cell *matCellDef="let receta"> {{ receta.id }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="nombre">
+            <th mat-header-cell *matHeaderCellDef> Nombre </th>
+            <td mat-cell *matCellDef="let receta"> {{ receta.nombre }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="descripcion">
+            <th mat-header-cell *matHeaderCellDef> Descripción </th>
+            <td mat-cell *matCellDef="let receta"> {{ receta.descripcion }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="autor">
+            <th mat-header-cell *matHeaderCellDef> Autor </th>
+            <td mat-cell *matCellDef="let receta"> {{ receta.autor }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="dificultad">
+            <th mat-header-cell *matHeaderCellDef> Dificultad </th>
+            <td mat-cell *matCellDef="let receta"> {{ receta.dificultad }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="acciones">
+            <th mat-header-cell *matHeaderCellDef> Acciones </th>
+            <td mat-cell *matCellDef="let receta">
+                <button mat-button color="primary" (click)="detalleReceta(receta.id)">Ver Detalle</button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table> -->
+</div>
+
+<hr>
+
+<div class="container my-5" *ngIf="!actualiza">
+    <h1 class="text-center mb-4">Nueva Receta</h1>
+    <form [formGroup]="n_receta_form" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="nombre">Nombre:</label>
+            <input id="nombre" formControlName="nombre" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="descripcion">Descripción:</label>
+            <textarea id="descripcion" formControlName="descripcion" class="form-control"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="autor">Autor:</label>
+            <input id="autor" formControlName="autor" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="tipo_cocina">Tipo de Cocina:</label>
+            <input id="tipo_cocina" formControlName="tipo_cocina" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="pais_origen">País de Origen:</label>
+            <input id="pais_origen" formControlName="pais_origen" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="dificultad">Dificultad:</label>
+            <input id="dificultad" formControlName="dificultad" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="img_ruta">URL de la Imagen:</label>
+            <input id="img_ruta" formControlName="img_ruta" class="form-control" />
+        </div>
+        <button type="submit" class="btn btn-outline-success" [disabled]="n_receta_form.invalid">Agregar</button>
+        <button type="button" (click)="limpiarFormN()" class="btn btn-outline-warning">Limpiar Formulario</button>
+    </form>
+</div>
+
+<div class="container my-5" *ngIf="actualiza">
+    <h1 class="text-center mb-4">Detalle de la Receta</h1>
+    <form [formGroup]="receta_det_form">
+        <div class="form-group">
+            <label for="nombre">Nombre:</label>
+            <input id="nombre" formControlName="nombre" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label for="descripcion">Descripción:</label>
+            <textarea id="descripcion" formControlName="descripcion" class="form-control"></textarea>
+        </div>
+        <button type="button" (click)="actualizaReceta()" class="btn btn-info" [disabled]="receta_det_form.invalid">Actualizar</button>
+        <button type="button" (click)="limpiarFormN()" class="btn btn-outline-warning" [disabled]="receta_det_form.invalid">Limpiar Formulario</button>
+    </form>
+</div>

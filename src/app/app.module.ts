@@ -12,6 +12,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserAdmComponent } from './component/user-adm/user-adm.component'; // Importa FormsModule
 import { RecipeAdmComponent } from './component/recipe-adm/recipe-adm.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RegisterComponent } from './component/register/register.component';
 
 @NgModule({
   declarations: [
@@ -22,14 +24,16 @@ import { RecipeAdmComponent } from './component/recipe-adm/recipe-adm.component'
     RecipesComponent,
     PageNotFoundComponent,
     UserAdmComponent,
-    RecipeAdmComponent
+    RecipeAdmComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule 
   ],
   providers: [],
   bootstrap: [AppComponent]
