@@ -19,13 +19,13 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
 
-    if(this.usrService.isAuthenticated()){
-      this.getRecetas();
-    }
+    // if(this.usrService.isAuthenticated()){
+    //   this.getRecetas();
+    // }
 
     // console.log(this.usrService.getToken())
 
-    //   this.getRecetas();
+      this.getRecetas();
 
 
   }

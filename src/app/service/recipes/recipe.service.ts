@@ -27,10 +27,10 @@ export class RecipeService {
     const headers = new HttpHeaders().set('Authorization', 'Bearer '+this.userService.getToken());
 
     if(pk!=undefined){
-      return this.http.get(environment.url_api+'/api/admin/user/id/'+pk,{headers});  
+      return this.http.get(environment.url_api+'/api/recipes/id/'+pk,{headers});  
     }
 
-    return this.http.get(environment.url_api+'/api/admin/users',{headers})
+    return this.http.get(environment.url_api+'/api/recipes',{headers})
   }
 
 
