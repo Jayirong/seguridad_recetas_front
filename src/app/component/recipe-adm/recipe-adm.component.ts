@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Receta } from 'src/app/model/receta';
 import { RecipeService } from 'src/app/service/recipes/recipe.service';
 import { UserService } from 'src/app/service/users/user.service';
+import { User } from 'src/app/model/usuario';
 
 @Component({
   selector: 'app-recipe-adm',
@@ -59,10 +60,15 @@ export class RecipeAdmComponent implements OnInit {
   onSubmit() {
     if (this.n_receta_form.valid) {
       const nuevaReceta: Receta = this.n_receta_form.value;
-      // this.recipeService.createReceta(nuevaReceta).subscribe((response) => {
-      //   this.recetas.push(response);
-      //   this.n_receta_form.reset(); // Limpiar el formulario
+
+      // this.userService.getUserDetail().subscribe((usr)=>{
+      //   console.log(usr);
       // });
+
+      this.recipeService.postRecipe(nuevaReceta).subscribe((response) => {
+        this.recetas.push(response);
+        this.n_receta_form.reset(); 
+      });
     }
   }
 

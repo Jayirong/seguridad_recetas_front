@@ -18,6 +18,8 @@ export class UserService {
   
   // private url : string = '';
 
+  private id_usuario_log :number = 0;
+
   public userlog: User = {
     id_user:0,
     username:"",
@@ -30,7 +32,12 @@ export class UserService {
 
   constructor(private http: HttpClient,
     private router : Router
-  ) {}
+  ) {
+  }
+
+  getUserLogId(){
+    return this.id_usuario_log;
+  }
 
   login(username: string, password: string) {
 
@@ -39,11 +46,21 @@ export class UserService {
 
       this.token = response.token
 
+
+      this.getUserDetail().subscribe((usr)=>{
+        this.id_usuario_log = usr.id_user;
+      });
+
       this.router.navigate(['/home'])
 
       return response.token;
     });
   
+  }
+
+  getUserDetail():Observable<any>{
+    const headers = new HttpHeaders().set('Authorization', 'Bearer '+this.getToken());
+    return this.http.get<any>(environment.url_api+'/api/user/me',{headers});
   }
 
   getUsers(pk:number | undefined){

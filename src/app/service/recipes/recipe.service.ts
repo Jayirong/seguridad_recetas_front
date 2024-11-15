@@ -34,8 +34,16 @@ export class RecipeService {
   }
 
 
-  postRecipe(recipe:any){
-    console.log(recipe)
+  postRecipe(recipe:any):Observable<any>{
+    const headers = this.getAuthHeaders(); // Genera las cabeceras de autenticación
+    const url = `${environment.url_api}/api/recipes/user/${this.userService.getUserLogId()}`;
+    
+    return this.http.post(url, recipe, { headers })
+      .pipe(
+        catchError(
+          this.handleError<any>('postReceta')
+      )
+    );
   }
 
   updateReceta(receta:any,pk:number): Observable<any> {

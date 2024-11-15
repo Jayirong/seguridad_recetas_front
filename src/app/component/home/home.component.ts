@@ -47,8 +47,6 @@ export class HomeComponent implements OnInit {
   recetaSeleccionada: any;
 
   verDetalle(id: number) {
-    // Aquí simulo la obtención de datos de la receta seleccionada.
-    // En una aplicación real, aquí harías una solicitud HTTP para obtener los detalles de la receta.
     this.recetaSeleccionada = {
       id_recipe: id,
       nombre: "Rasdasdsad",
@@ -61,6 +59,10 @@ export class HomeComponent implements OnInit {
       idUser: 1,
       comments: []
     };
+
+    this.recipeService.getRecetas(id).subscribe((receta:any)=>{
+      this.recetaSeleccionada = receta;
+    })
 
     this.detalleModal = new bootstrap.Modal(document.getElementById('detalleModal'), {});
     this.detalleModal.show();
