@@ -20,10 +20,7 @@ export class RecipesComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-
-    if(!this.userService.isAuthenticated()){
-      this.router.navigate(['/home']);
-    } 
+    this.router.navigate(['/home']);
 
     this.recipeService.getRecetas(undefined)?.subscribe((recipes:any)=>{
       this.recetas= recipes;

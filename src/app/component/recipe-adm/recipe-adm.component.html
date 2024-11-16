@@ -52,48 +52,15 @@
             <td>{{ receta.tipo_cocina }}</td>
             <td>{{ receta.pais_origen }}</td>
             <td>{{ receta.dificultad }}</td>
-            <td><button type="button" (click)="detalleReceta(receta.id_recipe)" class="btn btn-success" >Ver</button></td>
+            <td>
+                <button type="button" (click)="detalleReceta(receta.id_recipe)" class="btn btn-success" >Ver</button>
+                <button type="button" (click)="deleteReceta(receta.id_recipe)" class="btn btn-outline-danger" ><b>X</b></button>
+            </td>
     
           </tr>
         </tbody>
       </table>
-
-    <!-- <table mat-table [dataSource]="recetas" class="mat-elevation-z8">
-        <ng-container matColumnDef="id">
-            <th mat-header-cell *matHeaderCellDef> ID </th>
-            <td mat-cell *matCellDef="let receta"> {{ receta.id }} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="nombre">
-            <th mat-header-cell *matHeaderCellDef> Nombre </th>
-            <td mat-cell *matCellDef="let receta"> {{ receta.nombre }} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="descripcion">
-            <th mat-header-cell *matHeaderCellDef> Descripción </th>
-            <td mat-cell *matCellDef="let receta"> {{ receta.descripcion }} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="autor">
-            <th mat-header-cell *matHeaderCellDef> Autor </th>
-            <td mat-cell *matCellDef="let receta"> {{ receta.autor }} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="dificultad">
-            <th mat-header-cell *matHeaderCellDef> Dificultad </th>
-            <td mat-cell *matCellDef="let receta"> {{ receta.dificultad }} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="acciones">
-            <th mat-header-cell *matHeaderCellDef> Acciones </th>
-            <td mat-cell *matCellDef="let receta">
-                <button mat-button color="primary" (click)="detalleReceta(receta.id)">Ver Detalle</button>
-            </td>
-        </ng-container>
-
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table> -->
+  
 </div>
 
 <hr>

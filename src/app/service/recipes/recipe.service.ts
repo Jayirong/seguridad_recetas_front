@@ -46,6 +46,12 @@ export class RecipeService {
     );
   }
 
+  deleteRecipe(pk:number):Observable<any>{
+    const head = this.getAuthHeaders(); // Genera las cabeceras de autenticación
+
+    return this.http.delete(`${environment.url_api}/api/recipes/${pk}`,{headers:head});
+  }
+
   updateReceta(receta:any,pk:number): Observable<any> {
     const head = this.getAuthHeaders();
     return this.http.put(`${environment.url_api}/api/recipes/${pk}`, receta, {headers:head} )

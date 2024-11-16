@@ -33,7 +33,7 @@ export class RecipeAdmComponent implements OnInit {
     this.n_receta_form = this.fb.group({
       nombre: ['', Validators.required],
       descripcion: ['', Validators.required],
-      idUser: ['', Validators.required],
+      idUser: [{value:'', disabled:true}, Validators.required],
       tipo_cocina: ['', Validators.required],
       pais_origen: ['', Validators.required],
       dificultad: ['', Validators.required],
@@ -43,7 +43,7 @@ export class RecipeAdmComponent implements OnInit {
     this.receta_det_form = this.fb.group({
       nombre: ['', Validators.required],
       descripcion: ['', Validators.required],
-      idUser: ['', Validators.required],
+      idUser: [{value:'', disabled:true}, Validators.required],
       tipo_cocina: ['', Validators.required],
       pais_origen: ['', Validators.required],
       dificultad: ['', Validators.required],
@@ -70,6 +70,12 @@ export class RecipeAdmComponent implements OnInit {
         this.n_receta_form.reset(); 
       });
     }
+  }
+  deleteReceta(pk:number){
+    this.recipeService.deleteRecipe(pk).subscribe((response:any)=>{
+      alert(response)
+      this.ngOnInit()
+    });
   }
 
   detalleReceta(id: number) {
