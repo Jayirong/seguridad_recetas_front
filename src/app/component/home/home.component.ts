@@ -47,19 +47,7 @@ export class HomeComponent implements OnInit {
   recetaSeleccionada: any;
 
   verDetalle(id: number) {
-    // this.recetaSeleccionada = {
-    //   id_recipe: id,
-    //   nombre: "Rasdasdsad",
-    //   fecha_creacion: "15-11-2024",
-    //   descripcion: "Esta es una receta de ejemplo.",
-    //   tipo_cocina: 1,
-    //   pais_origen: 1,
-    //   dificultad: 2,
-    //   img_ruta: "ruta/a/imagen.jpg",
-    //   idUser: 1,
-    //   comments: []
-    // };
-
+   
     this.recipeService.getRecetas(id).subscribe((receta:any)=>{
       this.recetaSeleccionada = receta;
     })
