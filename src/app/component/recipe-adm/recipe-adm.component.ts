@@ -52,6 +52,10 @@ export class RecipeAdmComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getRecetas();
+  }
+
+  getRecetas(){
     this.recipeService.getRecetas(undefined)?.subscribe((recipes: any) => {
       this.recetas = recipes;
     });
@@ -68,14 +72,17 @@ export class RecipeAdmComponent implements OnInit {
       this.recipeService.postRecipe(nuevaReceta).subscribe((response) => {
         this.recetas.push(response);
         this.n_receta_form.reset(); 
+        alert('Registrado correctamente');  
       });
     }
   }
   deleteReceta(pk:number){
     this.recipeService.deleteRecipe(pk).subscribe((response:any)=>{
-      alert(response)
-      this.ngOnInit()
+      console.log(response)
+      this.getRecetas()
+
     });
+
   }
 
   detalleReceta(id: number) {
