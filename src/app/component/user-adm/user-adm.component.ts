@@ -149,7 +149,7 @@ export class UserAdmComponent implements OnInit {
       nombre:formValues.nombre,
       apellido:formValues.apellido,
       password: formValues.password,
-      roles: [formValues.rol] 
+      roles: formValues.rol
     };
   
     this.userService.createUser(newUser).subscribe(

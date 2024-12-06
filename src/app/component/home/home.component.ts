@@ -19,7 +19,6 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private recipeService: RecipeService,
-    private usrService:UserService
   ) {}
 
   ngOnInit(): void {

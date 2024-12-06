@@ -61,7 +61,7 @@
                 <label for="rol">Rol:</label>
                 <select class="form-control" formControlName="rol" >
                   <option class="form-control" value="1" >Admin</option>
-                  <option class="form-control" value="0" >User</option>
+                  <option class="form-control" value="0" selected >User</option>
 
                 </select>
                 <div *ngIf="n_user_form.get('rol')?.invalid && n_user_form.get('rol')?.touched" class="text-danger">
