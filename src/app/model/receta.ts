@@ -9,7 +9,7 @@ export interface Receta {
     dificultad : string,
     img_ruta : string,
     idUser:number,
-    comments:[]
+    // comments:[]
     // {
     //     "id_recipe": 2,
     //     "nombre": "Rasdasdsad",

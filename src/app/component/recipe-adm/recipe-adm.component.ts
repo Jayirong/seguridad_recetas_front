@@ -33,7 +33,7 @@ export class RecipeAdmComponent implements OnInit {
     this.n_receta_form = this.fb.group({
       nombre: ['', Validators.required],
       descripcion: ['', Validators.required],
-      idUser: [{value:'', disabled:true}, Validators.required],
+      idUser: [{value:null, disabled:true}, Validators.required],
       tipo_cocina: ['', Validators.required],
       pais_origen: ['', Validators.required],
       dificultad: ['', Validators.required],
@@ -43,7 +43,7 @@ export class RecipeAdmComponent implements OnInit {
     this.receta_det_form = this.fb.group({
       nombre: ['', Validators.required],
       descripcion: ['', Validators.required],
-      idUser: [{value:'', disabled:true}, Validators.required],
+      idUser: [{value:null, disabled:true}, Validators.required],
       tipo_cocina: ['', Validators.required],
       pais_origen: ['', Validators.required],
       dificultad: ['', Validators.required],

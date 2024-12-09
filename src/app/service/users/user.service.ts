@@ -18,7 +18,7 @@ export class UserService {
   
   // private url : string = '';
 
-  private id_usuario_log :number = 0;
+  public id_usuario_log :number = 0;
 
   public userlog: User = {
     id_user:0,
